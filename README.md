@@ -1,2 +1,2 @@
 hi my name is shakhzoda
-my favorite color is purple
+my favorite color is purple and pink
