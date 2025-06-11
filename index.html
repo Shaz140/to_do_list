@@ -1,39 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
 <html>
-
 <head>
-    <link rel="stylesheet"href="styles.css">
-    <title>
-        TO DO LIST
-    </title>
-</head>
+    <link rel="stylesheet" href="styles.css" />
+    <title>TO DO LIST</title>
+  </head>
 
-<body>  
-<div class="part-1">
-    <h1>Part 1</h1>
- <ul>
+  <body>
+    <div class="part-1">
+      <h1>Part 1</h1>
+      <ul>
         <li>Take the chicken out</li>
         <li>Chop the union</li>
         <li>Ferment the dough</li>
-    </ul>
-</div>
-   
-    <hr>
-   <div class="part-2">
- <ol>
+      </ul>
+      <form>
+        <input id="taskInput" placeholder="Enter a task" />
+        <button id="submit">Submit</button>
+      </form>
+    </div>
+
+    <hr />
+    <div class="part-2">
+      <ol>
         <h1>Part 2</h1>
-        <li> cut the dough</li>
+        <li>cut the dough</li>
         <li>turn on the oven</li>
-    </ol>
-    <input placeholder="Enter a task">
-    <button>Submit</button>
-   </div>
-   
-    
-</body>
-<hr>
-<p> Thing that is needed to be done before grandma gets home</p>
+      </ol>
+      <form>
+        <input id="taskInput" placeholder="Enter a task" />
+        <button id="submit">Submit</button>
+      </form>
+    </div>
 
-<hr>
-</body>
+    <hr />
+    <p>Thing that is needed to be done before grandma gets home</p>
 
+    <hr />
+
+    <!-- this is where javascript goes -->
+    <script>
+      document.getElementById("submit").addEventListener("click", function() {
+        value = document.getElementById("taskInput").value;
+        alert(value);
+      });
+    </script>
+  </body>
 </html>
