@@ -10,7 +10,7 @@
   <body>
     <div class="part-1">
       <h1>Part 1</h1>
-      <ul>
+      <ul id = taskList>
         <li>Take the chicken out</li>
         <li>Chop the union</li>
         <li>Ferment the dough</li>
@@ -34,16 +34,31 @@
       </form>
     </div>
 
-    <hr />
+    <hr/>
     <p>Thing that is needed to be done before grandma gets home</p>
 
-    <hr />
+    <hr/>
 
     <!-- this is where javascript goes -->
     <script>
-      document.getElementById("submit").addEventListener("click", function() {
-        value = document.getElementById("taskInput").value;
-        alert(value);
+      document.getElementById("submit").addEventListener("click", function(e) {
+        e.preventDefault();
+        const input = document.getElementById("taskInput");
+        const value = input.value.trim()
+        const newIteam = document.createElement('li')
+        newIteam.innerText = value;document.getElementById("taskList").appendChild(newIteam)
+        input.value = ''
+        const deleteBtn = document.createElement('button')
+        deleteBtn.innerText = 'Delete';
+        deleteBtn.style.marginLeft="10px"
+        deleteBtn.addEventListener('click',
+            function(){
+                newIteam.remove();
+            });
+            newIteam.appendChild(deleteBtn);
+            document.getElementById("taskList").appendChild(li);
+        
+        //alert(value);
       });
     </script>
   </body>
