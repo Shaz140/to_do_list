@@ -1,16 +1,5 @@
 h1{
-    color: darkgreen;
-}
-.part-2{
-    width: 150px;
-    padding: 50px;
-    margin: 0 auto;
-    border: 15px solid aqua;
-    background-color: rgb(39, 127, 227);
-}
-.part-2 li{
-    color: chocolate;
-    font-size: x-large;
+    color: rgb(0, 8, 69);
 }
 .part-1{
     width: 150px;

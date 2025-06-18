@@ -1,65 +1,86 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<html>
-<head>
-    <link rel="stylesheet" href="styles.css" />
-    <title>TO DO LIST</title>
-  </head>
-
-  <body>
-    <div class="part-1">
-      <h1>Part 1</h1>
-      <ul id = taskList>
-        <li>Take the chicken out</li>
-        <li>Chop the union</li>
-        <li>Ferment the dough</li>
-      </ul>
-      <form>
-        <input id="taskInput" placeholder="Enter a task" />
-        <button id="submit">Submit</button>
-      </form>
-    </div>
-
+  <html>
+    <head>
+      <link rel="stylesheet" href="styles.css" />
+      <title>TO DO LIST</title>
+    </head>
+    <h1>TO DO LIST</h1>
     <hr />
-    <div class="part-2">
-      <ol>
-        <h1>Part 2</h1>
-        <li>cut the dough</li>
-        <li>turn on the oven</li>
-      </ol>
-      <form>
-        <input id="taskInput" placeholder="Enter a task" />
-        <button id="submit">Submit</button>
-      </form>
-    </div>
+    <body>
+      <div class="part-1">
+        <h1>Part 1</h1>
+        <ul id="taskList">
+          <li>Take the chicken out</li>
+          <li>Chop the union</li>
+          <li>Ferment the dough</li>
+        </ul>
+        <form>
+          <input id="taskInput" placeholder="Enter a task" />
+          <button id="submit">Submit</button>
+        </form>
+      </div>
 
-    <hr/>
-    <p>Thing that is needed to be done before grandma gets home</p>
+      <!-- this is where javascript goes -->
+      <script>
+        let tasks = [];
 
-    <hr/>
+        //when the user loads the page they will see thier data persist
+        window.addEventListener("load", function () {
+          const saved = JSON.parse(localStorage.getItem("tasks"));
+          if (saved) {
+            tasks = saved;
+            saved.forEach((task) => {
+              const li = document.createElement("li");
+              li.textContent = task;
 
-    <!-- this is where javascript goes -->
-    <script>
-      document.getElementById("submit").addEventListener("click", function(e) {
-        e.preventDefault();
-        const input = document.getElementById("taskInput");
-        const value = input.value.trim()
-        const newIteam = document.createElement('li')
-        newIteam.innerText = value;document.getElementById("taskList").appendChild(newIteam)
-        input.value = ''
-        const deleteBtn = document.createElement('button')
-        deleteBtn.innerText = 'Delete';
-        deleteBtn.style.marginLeft="10px"
-        deleteBtn.addEventListener('click',
-            function(){
-                newIteam.remove();
+              const deleteBtn = document.createElement("button");
+              deleteBtn.innerText = "Delete";
+              deleteBtn.style.marginLeft = "10px";
+              deleteBtn.addEventListener("click", function () {
+                li.remove();
+                tasks = tasks.filter(t=> t !==task);
+                localStorage.setItem("tasks",   JSON.stringify(tasks))
+              });
+              li.appendChild(deleteBtn);
+              //  document.getElementById("taskList").appendChild(newIteam);
+
+              document.getElementById("taskList").appendChild(li);
+            });
+          }
+        });
+
+        //when th euser presses suvit it will add the task tot the list
+        document
+          .getElementById("submit")
+          .addEventListener("click", function (e) {
+            e.preventDefault();
+            const input = document.getElementById("taskInput");
+            const value = input.value.trim();
+
+            if (value === "") {
+              return;
+            }
+            tasks.push(value);
+            localStorage.setItem("tasks", JSON.stringify(tasks));
+
+            const newIteam = document.createElement("li");
+            newIteam.innerText = value;
+            document.getElementById("taskList").appendChild(newIteam);
+            input.value = "";
+
+            const deleteBtn = document.createElement("button");
+            deleteBtn.innerText = "Delete";
+            deleteBtn.style.marginLeft = "10px";
+            deleteBtn.addEventListener("click", function () {
+              newIteam.remove();
             });
             newIteam.appendChild(deleteBtn);
-            document.getElementById("taskList").appendChild(li);
-        
-        //alert(value);
-      });
-    </script>
-  </body>
+            document.getElementById("taskList").appendChild(newIteam);
+
+            //alert(value);
+          });
+      </script>
+    </body>
+  </html>
 </html>
